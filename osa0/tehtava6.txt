@@ -1,0 +1,7 @@
+kayttaja->selain:
+note left of selain
+Kayttaja kirjoittaa uuden noten nimen ja painaa submit
+https://fullstack-exampleapp.herokuapp.com/spa
+end note
+selain->palvelin: POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+palvelin->selain: status 201 Created ja response { message: 'note created' }

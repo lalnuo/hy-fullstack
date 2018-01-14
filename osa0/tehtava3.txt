@@ -1,0 +1,16 @@
+title Authentication Sequence
+
+kayttaja->selain:
+note left of selain
+Kayttaja kirjoittaa osoiteriville
+https://fullstack-exampleapp.herokuapp.com/notes
+end note
+selain->palvelin: GET https://fullstack-exampleapp.herokuapp.com/notes
+palvelin->selain: status 200, sivun HTML koodi
+selain->palvelin: GET https://fullstack-exampleapp.herokuapp.com/main.css
+palvelin->selain: status 200, main.css tiedosto
+selain->palvelin: GET https://fullstack-exampleapp.herokuapp.com/main.js
+palvelin->selain: status 200 main.js tiedosto
+selain->palvelin: GET https://fullstack-exampleapp.herokuapp.com/data.json
+palvelin->selain: status 200 data.json tiedosto
+

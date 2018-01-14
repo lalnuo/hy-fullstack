@@ -1,0 +1,8 @@
+title Authentication Sequence
+
+kayttaja->selain: Käyttäjä kirjoittaa uuden noten ja klikkaa "Talleta" 
+end note
+selain->palvelin: POST https://fullstack-exampleapp.herokuapp.com/new_note { note: 'fds' }
+palvelin->selain: status 302, location: /notes, redirectaa takaisin notesiin
+selain->palvelin: GET https://fullstack-exampleapp.herokuapp.com/notes
+palvelin->selain: 200, palauttaa notesinsin sisällön
