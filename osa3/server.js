@@ -2,8 +2,12 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
 app.use(bodyParser.json());
+app.use(cors());
+morgan.token("body", req => JSON.stringify(req.body));
+app.use(morgan(":method :url :body :res[content-length] - :response-time ms"));
 app.use(morgan("tiny"));
 
 let persons = [
@@ -29,7 +33,7 @@ app.get("/api/persons", (req, res) => {
 });
 
 app.delete("/api/persons/:id", (req, res) => {
-  persons = persons.filter(person => person.id !== req.params.id);
+  persons = persons.filter(person => person.id !== Number(req.params.id));
   res.sendStatus(200);
 });
 
@@ -45,7 +49,7 @@ app.post("/api/persons", (req, res) => {
     res.status(400).send("Name must be unique");
   } else {
     persons.push({ name, number, id });
-    res.sendStatus(200);
+    res.status(200).send({ name, number, id });
   }
 });
 
