@@ -5,7 +5,7 @@ const url = "mongodb://mongo:mongo@ds121118.mlab.com:21118/fshy";
 mongoose.connect(url);
 mongoose.Promise = global.Promise;
 
-const Contact = mongoose.model("Contact", {
+const Contact = mongoose.model("Person", {
   name: String,
   number: String
 });
@@ -21,7 +21,7 @@ if (!name || !number) {
     mongoose.connection.close();
   });
 } else {
-  new Contact({ name, number }).save().then(result => {
+  new Contact({ name, number }).save().then(() => {
     console.log("Contact saved!");
     mongoose.connection.close();
   });
